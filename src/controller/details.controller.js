@@ -1,29 +1,29 @@
-const mongoose = require("mongoose");
-required("../models/detail.model");
-const details = mongoose.model("Employee_Details");
+import { model } from 'mongoose'
+import('../models/detail.model')
+const details = model('Employee_Details')
+const employee = model('Employee')
 
 // Update employee details
-module.exports.create = (req, res, next) => {
+
+export function create (req, res, next) {
   details.create(req.body, (err, data) => {
     if (err) {
-      if (err.code == 11000)
-        res.status(422).send(["Duplicate email adrress found."]);
-      else {
-        return next(err);
+      if (err.code === 11000) { res.status(422).send(['Duplicate email adrress found.']) } else {
+        return next(err)
       }
     } else {
-      res.json(data);
+      res.json(data)
     }
-  });
-};
+  })
+}
 
 // Get employee details by id
-module.exports.getDetailById = (req, res) => {
-  emp.findById(req.params.id, (error, data) => {
+export function getDetailById (req, res) {
+  employee.findById(req.params.id, (error, data) => {
     if (error) {
-      return next(error);
+      return (error)
     } else {
-      res.json(data);
+      res.json(data)
     }
-  });
-};
+  })
+}
