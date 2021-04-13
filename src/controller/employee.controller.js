@@ -1,12 +1,13 @@
+/* eslint-disable array-callback-return */
 const mongoose = require('mongoose')
 require('../models/employee.model')
-const emp = mongoose.model('Employee')
+const employee = mongoose.model('Employee')
 
 // Create new Employee info
 module.exports.create = (req, res, next) => {
-  emp.create(req.body, (err, data) => {
+  employee.create(req.body, (err, data) => {
     if (err) {
-      if (err.code == 11000) { res.status(422).send(['Duplicate email adrress found.']) } else return next(err)
+      if (err.code === 11000) { res.status(422).send(['Duplicate email adrress found.']) } else return next(err)
     } else {
       res.json(data)
     }
@@ -15,9 +16,9 @@ module.exports.create = (req, res, next) => {
 
 // Get Employee List
 module.exports.getAll = (req, res) => {
-  emp.find((error, data) => {
+  employee.find((error, data) => {
     if (error) {
-      return next(error)
+      return (error)
     } else {
       res.json(data)
     }
@@ -26,9 +27,9 @@ module.exports.getAll = (req, res) => {
 
 // Get Employee Name List
 module.exports.getAllNames = (req, res) => {
-  emp.find({}, { name: 1, _id: 0 }, (error, data) => {
+  employee.find({}, { name: 1, _id: 0 }, (error, data) => {
     if (error) {
-      return next(error)
+      return (error)
     } else {
       res.json(data)
     }
@@ -37,9 +38,9 @@ module.exports.getAllNames = (req, res) => {
 
 // Get Employee info By Id
 module.exports.getById = (req, res) => {
-  emp.findById(req.params.id, (error, data) => {
+  employee.findById(req.params.id, (error, data) => {
     if (error) {
-      return next(error)
+      return (error)
     } else {
       res.json(data)
     }
@@ -48,7 +49,7 @@ module.exports.getById = (req, res) => {
 
 // Update Employee Info
 module.exports.update = (req, res, next) => {
-  emp.findByIdAndUpdate(
+  employee.findByIdAndUpdate(
     req.params.id,
     {
       $set: req.body
@@ -66,7 +67,7 @@ module.exports.update = (req, res, next) => {
 
 // Delete Employee info
 module.exports.delete = (req, res, next) => {
-  emp.findOneAndRemove(req.params.id, (error, data) => {
+  employee.findOneAndRemove(req.params.id, (error, data) => {
     if (error) {
       return next(error)
     } else {

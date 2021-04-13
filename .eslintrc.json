@@ -12,6 +12,7 @@
         "sourceType": "module"
     },
     "rules": {
-        "quotes": ["warn", "single"]
+        "quotes": ["warn", "single"],
+        "camelcase": "off"
     }
 }
