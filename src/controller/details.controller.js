@@ -1,11 +1,8 @@
-const model = require('mongoose')
-require('../models/detail.model')
-const details = model('Employee_Details')
-const employee = model('Employee')
+const details = require('../models/detail.model')
+const employee = require('../models/employee.model')
 
 // Update employee details
-
-export function create (req, res, next) {
+module.exports.create = (req, res, next) => {
   details.create(req.body, (err, data) => {
     if (err) {
       if (err.code === 11000) { res.status(422).send(['Duplicate email adrress found.']) } else {
@@ -18,7 +15,7 @@ export function create (req, res, next) {
 }
 
 // Get employee details by id
-export function getDetailById (req, res) {
+module.exports.getDetailById = (req, res, next) => {
   employee.findById(req.params.id, (error, data) => {
     if (error) {
       return (error)

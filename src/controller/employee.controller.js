@@ -1,7 +1,5 @@
 /* eslint-disable array-callback-return */
-const mongoose = require('mongoose')
-require('../models/employee.model')
-const employee = mongoose.model('Employee')
+const employee = require('../models/employee.model')
 
 // Create new Employee info
 module.exports.create = (req, res, next) => {
