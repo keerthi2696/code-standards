@@ -1,5 +1,5 @@
-import { model } from 'mongoose'
-import('../models/detail.model')
+const model = require('mongoose')
+require('../models/detail.model')
 const details = model('Employee_Details')
 const employee = model('Employee')
 
