@@ -1,10 +1,10 @@
-require('./config/config')
-require('./helper/db')
+require('./src/config/config')
+require('./src/helper/db')
 
 const express = require('express')
 const bodyParser = require('body-parser')
 
-const employeeRoute = require('./routes/employee.route')
+const employeeRoute = require('./src/routes/employee.route')
 
 var app = express()
 

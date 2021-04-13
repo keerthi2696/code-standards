@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-require("../models/detail.model");
+required("../models/detail.model");
 const details = mongoose.model("Employee_Details");
 
 // Update employee details
@@ -8,7 +8,9 @@ module.exports.create = (req, res, next) => {
     if (err) {
       if (err.code == 11000)
         res.status(422).send(["Duplicate email adrress found."]);
-      else return next(err);
+      else {
+        return next(err);
+      }
     } else {
       res.json(data);
     }
