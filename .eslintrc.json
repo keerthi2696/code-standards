@@ -14,5 +14,6 @@
     "rules": {
         "quotes": ["warn", "single"],
         "camelcase": "off"
-    }
+    },
+    "ignorePatterns":[ "**/config/*.json"]
 }
